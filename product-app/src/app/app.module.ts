@@ -1,9 +1,9 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { ProductPage } from '../pages/product/product';
-import { ProfilePage } from '../pages/profile/profile';
-import { LogoutPage } from '../pages/Logout/Logout';
+import { ProductPage } from '../pages/product/product-list/product';
+import { ProfilePage } from '../pages/profile/profile-detail/profile';
+import { LogoutPage } from '../pages/acces/logout/logout';
 
 @NgModule({
   declarations: [

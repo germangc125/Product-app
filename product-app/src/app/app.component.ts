@@ -2,9 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
-import { ProductPage } from '../pages/product/product';
-import { ProfilePage } from '../pages/profile/profile';
-import { LogoutPage } from '../pages/Logout/Logout';
+import { ProductPage } from '../pages/product/product-list/product';
+import { ProfilePage } from '../pages/profile/profile-detail/profile';
+import { LogoutPage } from '../pages/acces/logout/logout';
 
 
 @Component({
