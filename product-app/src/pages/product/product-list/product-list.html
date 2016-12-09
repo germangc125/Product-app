@@ -1,0 +1,26 @@
+<!--
+  Generated template for the ProductList page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>List products</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card *ngFor="let product of products" (click)="productSelecionado(product)">
+    <ion-card-header>
+      {{product.name}}
+    </ion-card-header>
+    <ion-card-content>
+      <span>{{product.type}}</span> - <span>price: {{product.price}}</span>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
