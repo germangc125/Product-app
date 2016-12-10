@@ -40,7 +40,7 @@ export class UserService {
     updateUser(user: User): Observable<User> {
        const url = this.usersURI2 + "update/" + user.email;
         return this.http
-            .put(url, JSON.stringify({"firstname":"Carlos", 
+            .put(url, JSON.stringify({"firstname":user.firstname, 
                                       "lastname":user.lastname, 
                                       "phone":user.phone}), 
                 {headers: this.headers})

@@ -21,23 +21,23 @@
 
   <ion-item>
     <ion-label fixed>Firsname</ion-label>
-    <ion-input type="text" value={{user.firstname}}></ion-input>
+    <ion-input type="text" [(ngModel)]="user.firstname"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label fixed>Lastname</ion-label>
-    <ion-input type="text" value={{user.lastname}} ></ion-input>
+    <ion-input type="text" [(ngModel)]="user.lastname" ></ion-input>
   </ion-item>
 
     <ion-item>
     <ion-label fixed>Email</ion-label>
-    <ion-input type="text" disabled="true" value={{user.email}} >
+    <ion-input type="text" disabled="true" [(ngModel)]="user.email" >
     </ion-input>
   </ion-item>
 
       <ion-item>
     <ion-label fixed>Phone</ion-label>
-    <ion-input type="text" value={{user.phone}} ></ion-input>
+    <ion-input type="text" [(ngModel)]="user.phone" ></ion-input>
   </ion-item>
 
 
