@@ -7,11 +7,11 @@ import { ProductListPage } from '../pages/product/product-list/product-list';
 import { ProductDetailPage } from "../pages/product/product-detail/product-detail";
 import { ProductCreatePage } from '../pages/product/product-create/product-create';
 import { ProductEditPage } from '../pages/product/product-edit/product-edit';
-
-import { ProfilePage } from '../pages/profile/profile-detail/profile';
 import { ProfileEditPage } from  '../pages/profile/profile-edit/profile-edit'
-
+import { ProfilePage } from '../pages/profile/profile-detail/profile';
 import { LogoutPage } from '../pages/access/logout/logout';
+import {LoginPage}   from  '../pages/access/login/login';
+import { Storage } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,8 @@ import { LogoutPage } from '../pages/access/logout/logout';
     ProductEditPage,
     ProfilePage,
     ProfileEditPage,
-    LogoutPage
+    LogoutPage,
+    LoginPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -36,8 +37,9 @@ import { LogoutPage } from '../pages/access/logout/logout';
     ProductEditPage,
     ProfilePage,
     ProfileEditPage,
-    LogoutPage
+    LogoutPage,
+    LoginPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},Storage]
 })
 export class AppModule {}

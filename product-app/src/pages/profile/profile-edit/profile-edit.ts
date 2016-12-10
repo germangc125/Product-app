@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { UserService } from "../../../providers/user-service";
-import { AlertController } from 'ionic-angular';
+import { AlertController, ToastController } from 'ionic-angular';
 import {User} from '../../../model/user';
 
 /*
@@ -36,7 +36,8 @@ export class ProfileEditPage {
     private userService: UserService, 
     public formBuilder: FormBuilder, 
     public params:NavParams,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public toastCtrl: ToastController
     ) 
   {
   	this.idUserlogin = this.params.get("email");
