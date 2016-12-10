@@ -31,7 +31,8 @@
 
     <ion-item>
     <ion-label fixed>Email</ion-label>
-    <ion-input type="text" value={{user.email}} ></ion-input>
+    <ion-input type="text" disabled="true" value={{user.email}} >
+    </ion-input>
   </ion-item>
 
       <ion-item>
@@ -39,12 +40,8 @@
     <ion-input type="text" value={{user.phone}} ></ion-input>
   </ion-item>
 
-  <ion-item>
-    <ion-label fixed>Phone2</ion-label>
-    <ion-input type="text"></ion-input>
-  </ion-item>
 
 </ion-list>
 
-  <button ion-button color="light" >Prueba</button>
+  <button ion-button color="Green" (click)="updateUser(user)">Save</button>
 </ion-content>
