@@ -3,7 +3,7 @@ export class Product {
     name: string;
     type: string;
     quantity: number;
-    price: number;
-    latitude: any;
-    longitude: any;
+    price: string;
+    latitude: string;
+    longitude: string;
 }

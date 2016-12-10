@@ -4,6 +4,8 @@ import { ProductService } from "../../../providers/product-service";
 import { Product } from '../../../model/product';
 import { ProductCreatePage } from '../product-create/product-create';
 import { ProductEditPage } from '../product-edit/product-edit';
+import { AlertController,ToastController } from 'ionic-angular';
+import { ProductListPage } from "../product-list/product-list";
 
 /*
   Generated class for the ProductDetail page.
@@ -24,13 +26,12 @@ export class ProductDetailPage {
               name:"",
               type:"",
               quantity:0,
-              price:0,
+              price:"",
               latitude:"",
               longitude:""
   };
 
-
-  constructor(public navCtrl: NavController, public params:NavParams,private productService: ProductService) {
+  constructor(public navCtrl: NavController, public params:NavParams,private productService: ProductService,public alertCtrl: AlertController,public toastCtrl: ToastController) {
     this.idProductSelected = this.params.get("id");
     this.getProduct(this.idProductSelected);
   }
@@ -59,6 +60,43 @@ export class ProductDetailPage {
      this.navCtrl.push(ProductEditPage,{id: this.product.id});
   }
 
+  showConfirmDelete() {
+    let confirm = this.alertCtrl.create({
+      title: 'Delete product?',
+      message: 'Are you sure to delete this product?',
+      buttons: [
+        {
+          text: 'Disagree',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Agree',
+          handler: () => {
+            this.deleteProduct();
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
 
-
+  deleteProduct(){
+        this.productService.delete(this.product.id)
+            .subscribe(
+            product => {
+                  let toast = this.toastCtrl.create({
+                            message: 'Product was delete successfully',
+                            duration: 3000,
+                            position: 'top'
+                       });
+                       toast.present();
+                       this.navCtrl.push(ProductListPage);
+            },
+            error => {
+                console.log(error);
+            }
+        );
+  }
 }
