@@ -1,0 +1,59 @@
+<!--
+  Generated template for the ProfileEdit page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Edit Profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+ <form [formGroup]="userForm" (ngSubmit)="showConfirm(user)">
+<ion-list>
+
+  <ion-item>
+    <ion-label fixed>Firsname</ion-label>
+    <ion-input type="text" formControlName="firstname" [(ngModel)]="user.firstname"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label fixed>Lastname</ion-label>
+    <ion-input type="text" formControlName="lastname" [(ngModel)]="user.lastname" ></ion-input>
+  </ion-item>
+
+    <ion-item>
+    <ion-label fixed>Email</ion-label>
+    <ion-input type="text" disabled="true" formControlName="email"  [(ngModel)]="user.email" >
+    </ion-input>
+  </ion-item>
+
+      <ion-item>
+    <ion-label fixed>Phone</ion-label>
+    <ion-input type="text" formControlName="phone" [(ngModel)]="user.phone" ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label fixed>Password</ion-label>
+    <ion-input type="password" formControlName="password" [(ngModel)]="user.password" ></ion-input>
+  </ion-item>
+
+
+</ion-list>
+
+  <div text-center>
+   <button type="submit" ion-button small icon-left  [disabled]="!userForm.valid">
+              <ion-icon name="create"></ion-icon>
+              Save
+        </button>
+     </div>     
+
+
+</form>
+</ion-content>

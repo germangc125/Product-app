@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { UserService } from "../../../providers/user-service";
 import {User} from '../../../model/user';
+import { ProfileEditPage } from  '../profile-edit/profile-edit'
 
 /*
   Generated class for the Profile page.
@@ -56,7 +57,9 @@ export class ProfilePage {
         );
     }
   
-  
+   userSelecionado(user:User){
+    this.navCtrl.push(ProfileEditPage,{email: user.email});
+  }
   
 
   ionViewDidLoad() {

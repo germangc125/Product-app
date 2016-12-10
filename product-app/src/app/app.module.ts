@@ -9,6 +9,8 @@ import { ProductCreatePage } from '../pages/product/product-create/product-creat
 import { ProductEditPage } from '../pages/product/product-edit/product-edit';
 
 import { ProfilePage } from '../pages/profile/profile-detail/profile';
+import { ProfileEditPage } from  '../pages/profile/profile-edit/profile-edit'
+
 import { LogoutPage } from '../pages/access/logout/logout';
 
 @NgModule({
@@ -19,6 +21,7 @@ import { LogoutPage } from '../pages/access/logout/logout';
     ProductCreatePage,
     ProductEditPage,
     ProfilePage,
+    ProfileEditPage,
     LogoutPage
   ],
   imports: [
@@ -32,6 +35,7 @@ import { LogoutPage } from '../pages/access/logout/logout';
     ProductCreatePage,
     ProductEditPage,
     ProfilePage,
+    ProfileEditPage,
     LogoutPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]

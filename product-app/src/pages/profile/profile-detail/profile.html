@@ -17,31 +17,59 @@
 <ion-content padding>
 
 
+  <ion-card>
+    <ion-card-header>
+      Profile
+    </ion-card-header>
+     <hr>
+    <ion-card-content>
+
+
+
 <ion-list>
 
   <ion-item>
     <ion-label fixed>Firsname</ion-label>
-    <ion-input type="text" value={{user.firstname}}></ion-input>
+    <ion-input type="text" disabled="true"  [(ngModel)]="user.firstname"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label fixed>Lastname</ion-label>
-    <ion-input type="text" value={{user.lastname}} ></ion-input>
+    <ion-input type="text" disabled="true" [(ngModel)]="user.lastname" ></ion-input>
   </ion-item>
 
     <ion-item>
     <ion-label fixed>Email</ion-label>
-    <ion-input type="text" disabled="true" value={{user.email}} >
+    <ion-input type="text" disabled="true" [(ngModel)]="user.email" >
     </ion-input>
   </ion-item>
 
       <ion-item>
     <ion-label fixed>Phone</ion-label>
-    <ion-input type="text" value={{user.phone}} ></ion-input>
+    <ion-input type="text" disabled="true" [(ngModel)]="user.phone" ></ion-input>
   </ion-item>
 
 
 </ion-list>
 
-  <button ion-button color="Green" (click)="updateUser(user)">Save</button>
+
+   <br /><br /><hr>
+      <div text-center>
+        <button ion-button small icon-left (click)="userSelecionado(user)">
+          <ion-icon name="create"></ion-icon>
+          Edit
+        </button>
+        <button ion-button small icon-left>
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </div>
+
+
+    </ion-card-content>
+    </ion-card>
+
 </ion-content>
+
+
+

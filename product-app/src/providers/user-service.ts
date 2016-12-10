@@ -29,6 +29,16 @@ export class UserService {
    }
 
 
+     deleteUser(email:string):Observable<User> {
+        const url = this.usersURI2 + "delete/"+ email;
+        return this.http.delete(url)
+            .map(
+                response => response.json() 
+                )
+            .catch(this.handleError);
+   }
+
+
     update(user: User): Observable<User> {
         const url = `${this.usersURI}/${user.id}`;
         return this.http
@@ -40,7 +50,7 @@ export class UserService {
     updateUser(user: User): Observable<User> {
        const url = this.usersURI2 + "update/" + user.email;
         return this.http
-            .put(url, JSON.stringify({"firstname":"Carlos", 
+            .put(url, JSON.stringify({"firstname":user.firstname, 
                                       "lastname":user.lastname, 
                                       "phone":user.phone}), 
                 {headers: this.headers})
