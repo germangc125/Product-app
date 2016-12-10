@@ -29,6 +29,16 @@ export class UserService {
    }
 
 
+     deleteUser(email:string):Observable<User> {
+        const url = this.usersURI2 + "delete/"+ email;
+        return this.http.delete(url)
+            .map(
+                response => response.json() 
+                )
+            .catch(this.handleError);
+   }
+
+
     update(user: User): Observable<User> {
         const url = `${this.usersURI}/${user.id}`;
         return this.http

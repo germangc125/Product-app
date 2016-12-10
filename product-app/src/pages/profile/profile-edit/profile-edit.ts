@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams} from 'ionic-angular';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { UserService } from "../../../providers/user-service";
+import { AlertController } from 'ionic-angular';
 import {User} from '../../../model/user';
 
 /*
@@ -15,6 +17,7 @@ import {User} from '../../../model/user';
      providers: [UserService]
 })
 export class ProfileEditPage {
+    userForm: FormGroup;
 
 	  public idUserlogin:any;
 
@@ -28,10 +31,33 @@ export class ProfileEditPage {
     status: ""
   };
 
-  constructor(public navCtrl: NavController, private userService: UserService, public params:NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    private userService: UserService, 
+    public formBuilder: FormBuilder, 
+    public params:NavParams,
+    public alertCtrl: AlertController
+    ) 
+  {
   	this.idUserlogin = this.params.get("email");
   	this.getUser(this.idUserlogin);
+    this.userForm = this.editUserForm();
   }
+
+    private editUserForm() {
+    return this.formBuilder.group({
+      firstname: ['', [Validators.required, Validators.minLength(3)]],
+      lastname: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.minLength(6)]],
+      phone: ['', [Validators.required, Validators.minLength(7)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+
+    });
+  }
+
+
+
+
 
      getUser(email:string) {
         this.userService.getUser(email)
@@ -44,6 +70,31 @@ export class ProfileEditPage {
             }
         );
     }
+
+    
+     showConfirm(user:User) {
+    let confirm = this.alertCtrl.create({
+      title: 'Edit User?',
+      message: 'Are you sure to edit your user?',
+      buttons: [
+        {
+          text: 'Disagree',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Agree',
+          handler: () => {
+            this.updateUser(user);
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+
 
 
      updateUser(user:User) {
