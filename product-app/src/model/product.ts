@@ -4,6 +4,6 @@ export class Product {
     type: string;
     quantity: number;
     price: number;
-    latitude: number;
-    longitude: number;
+    latitude: any;
+    longitude: any;
 }
