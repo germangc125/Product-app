@@ -37,6 +37,18 @@ export class UserService {
             .catch(this.handleError);
     }
 
+    updateUser(user: User): Observable<User> {
+       const url = this.usersURI2 + "update/" + user.email;
+        return this.http
+            .put(url, JSON.stringify({"firstname":"Carlos", 
+                                      "lastname":user.lastname, 
+                                      "phone":user.phone}), 
+                {headers: this.headers})
+            .map(() => user)         
+            .catch(this.handleError);
+
+    }
+
     create(name: string): Observable<User> {
 
         return this.http
