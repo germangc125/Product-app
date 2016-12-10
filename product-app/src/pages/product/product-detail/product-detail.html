@@ -8,18 +8,39 @@
 
   <ion-navbar>
     <ion-title>Product detail</ion-title>
+
+     <ion-buttons end>
+      <button ion-button icon-only (click)="goCreateProduct()">
+        <ion-icon name="ios-add-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+    
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
- <h1>Producto</h1>
-  <br>
-       Id: {{product.id}} <br>
-    <label>Name: {{product.name}} </label><br />
-    <label>Description: {{product.description}}</label><br />
-    <label>Type: {{product.type}} </label><br />
-    <label>Price: {{product.price}} </label><br />
-    <label>Quantity: {{product.quantity}} </label><br />
+  <ion-card>
+    <ion-card-header>
+      View product
+    </ion-card-header>
+    <hr>
+    <ion-card-content>
+      <label>Name: {{product.name}} </label><br />
+      <label>Type: {{product.type}} </label><br />
+      <label>Price: {{product.price}} </label><br />
+      <label>Quantity: {{product.quantity}} </label><br /><br /><hr>
+      <div text-center>
+        <button ion-button small icon-left>
+          <ion-icon name="trash"></ion-icon>
+          Edit
+        </button>
+        <button ion-button small icon-left>
+          <ion-icon name="create"></ion-icon>
+          Delete
+        </button>
+      </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

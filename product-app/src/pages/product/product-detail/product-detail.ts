@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ProductService } from "../../../providers/product-service";
-import {Product} from '../../../model/product';
-
+import { Product } from '../../../model/product';
+import { ProductCreatePage } from '../product-create/product-create';
 /*
   Generated class for the ProductDetail page.
 
@@ -49,4 +49,7 @@ export class ProductDetailPage {
     console.log('Hello ProductDetailPage Page');
   }
 
+  goCreateProduct(){
+     this.navCtrl.push(ProductCreatePage);
+  }
 }
