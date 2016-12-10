@@ -30,9 +30,12 @@
       <label>Name: {{product.name}} </label><br />
       <label>Type: {{product.type}} </label><br />
       <label>Price: {{product.price}} </label><br />
-      <label>Quantity: {{product.quantity}} </label><br /><br /><hr>
+      <label>Quantity: {{product.quantity}} </label><br />
+      <label>Latitude: {{product.latitude}} </label><br />
+      <label>Longitude: {{product.longitude}} </label>
+      <br /><br /><hr>
       <div text-center>
-        <button ion-button small icon-left>
+        <button ion-button small icon-left (click)="goEditProduct()">
           <ion-icon name="trash"></ion-icon>
           Edit
         </button>
