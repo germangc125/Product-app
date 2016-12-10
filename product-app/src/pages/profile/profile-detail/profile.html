@@ -21,30 +21,27 @@
 
   <ion-item>
     <ion-label fixed>Firsname</ion-label>
-    <ion-input type="text" value=""></ion-input>
+    <ion-input type="text" value={{user.firstname}}></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label fixed>Lastname</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input type="text" value={{user.lastname}} ></ion-input>
   </ion-item>
 
     <ion-item>
     <ion-label fixed>Email</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input type="text" disabled="true" value={{user.email}} >
+    </ion-input>
   </ion-item>
 
       <ion-item>
     <ion-label fixed>Phone</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input type="text" value={{user.phone}} ></ion-input>
   </ion-item>
 
-  <ion-item>
-    <ion-label fixed>Phone2</ion-label>
-    <ion-input type="text"></ion-input>
-  </ion-item>
 
 </ion-list>
 
-  <button ion-button color="light" >Prueba</button>
+  <button ion-button color="Green" (click)="updateUser(user)">Save</button>
 </ion-content>

@@ -1,14 +1,23 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+
 import { MyApp } from './app.component';
-import { ProductPage } from '../pages/product/product-list/product';
+
+import { ProductListPage } from '../pages/product/product-list/product-list';
+import { ProductDetailPage } from "../pages/product/product-detail/product-detail";
+import { ProductCreatePage } from '../pages/product/product-create/product-create';
+import { ProductEditPage } from '../pages/product/product-edit/product-edit';
+
 import { ProfilePage } from '../pages/profile/profile-detail/profile';
 import { LogoutPage } from '../pages/access/logout/logout';
 
 @NgModule({
   declarations: [
     MyApp,
-    ProductPage,
+    ProductListPage,
+    ProductDetailPage,
+    ProductCreatePage,
+    ProductEditPage,
     ProfilePage,
     LogoutPage
   ],
@@ -18,7 +27,10 @@ import { LogoutPage } from '../pages/access/logout/logout';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    ProductPage,
+    ProductListPage,
+    ProductDetailPage,
+    ProductCreatePage,
+    ProductEditPage,
     ProfilePage,
     LogoutPage
   ],

@@ -8,6 +8,7 @@ import {Observable} from 'rxjs/Rx';
 export class UserService {
 
     private usersURI = 'http://138.68.0.83:7070/api/v1/user/list';
+	private usersURI2 = 'http://138.68.0.83:7070/api/v1/user/';
     private headers = new Headers({'Content-Type': 'application/json'});
 
     constructor(private http: Http) { }
@@ -17,6 +18,16 @@ export class UserService {
             .map(response => response.json() as User[])
             .catch(this.handleError);
     }
+	
+	  getUser(email:string):Observable<User> {
+        const url = this.usersURI2 + "profile/"+ email;
+        return this.http.get(url)
+            .map(
+                response => response.json() as User
+                )
+            .catch(this.handleError);
+   }
+
 
     update(user: User): Observable<User> {
         const url = `${this.usersURI}/${user.id}`;
@@ -24,6 +35,18 @@ export class UserService {
             .put(url, JSON.stringify(user), {headers: this.headers})
             .map(() => user)
             .catch(this.handleError);
+    }
+
+    updateUser(user: User): Observable<User> {
+       const url = this.usersURI2 + "update/" + user.email;
+        return this.http
+            .put(url, JSON.stringify({"firstname":"Carlos", 
+                                      "lastname":user.lastname, 
+                                      "phone":user.phone}), 
+                {headers: this.headers})
+            .map(() => user)         
+            .catch(this.handleError);
+
     }
 
     create(name: string): Observable<User> {

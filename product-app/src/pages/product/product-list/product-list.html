@@ -1,5 +1,5 @@
 <!--
-  Generated template for the Product page.
+  Generated template for the ProductList page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
@@ -9,11 +9,14 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>List products</ion-title>
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
-
+    <ion-list no-lines>
+      <button ion-item *ngFor="let product of products" (click)="productSelecionado(product)">
+        {{product.name}}
+      </button>  
+    </ion-list>
 </ion-content>
