@@ -3,6 +3,8 @@ import { NavController } from 'ionic-angular';
 import {Product} from "../../../model/product";
 import {ProductService} from "../../../providers/product-service";
 import { ProductDetailPage } from "../product-detail/product-detail";
+import {LoginPage}      from '../../access/login/login';
+import { Storage } from '@ionic/storage';
 
 
 /*
@@ -17,8 +19,9 @@ import { ProductDetailPage } from "../product-detail/product-detail";
   providers: [ProductService]
 })
 export class ProductListPage {
+    private idsesion:number
 
-  constructor(public navCtrl: NavController, private productService: ProductService) {}
+  constructor(public navCtrl: NavController, private productService: ProductService,public storage: Storage) {}
 
   ionViewDidLoad() {}
   products: Product[];
@@ -51,8 +54,40 @@ export class ProductListPage {
 
 
   ngOnInit(): void {
-      this.getProducts();
+    
+
+
+      this.storage.get("USER").then(res => {
+if(res !=null){
+
+
+     if(res.id !=undefined){
+       this.getProducts();
+
+       
+     }
+    
+
+}
+
+ else{
+           this.navCtrl.push(LoginPage);
+   
+        
+     }
+
+
+    
+
+
+
+    	
+    });
+     
+
+      
 
  }
+
 
 }

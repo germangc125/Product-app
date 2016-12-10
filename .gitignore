@@ -46,3 +46,6 @@ jspm_packages
 
 # Output of 'npm pack'
 *.tgz
+product-app/src/app/app.module.ts
+product-app/src/app/app.module.ts
+product-app/src/app/app.module.ts
