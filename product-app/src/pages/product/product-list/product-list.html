@@ -13,14 +13,10 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
-  <ion-card *ngFor="let product of products" (click)="productSelecionado(product)">
-    <ion-card-header>
-      {{product.name}}
-    </ion-card-header>
-    <ion-card-content>
-      <span>{{product.type}}</span> - <span>price: {{product.price}}</span>
-    </ion-card-content>
-  </ion-card>
+    <ion-list no-lines>
+      <button ion-item *ngFor="let product of products" (click)="productSelecionado(product)">
+        {{product.name}}
+      </button>  
+    </ion-list>
 </ion-content>
