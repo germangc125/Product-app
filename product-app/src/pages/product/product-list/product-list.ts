@@ -30,9 +30,9 @@ export class ProductListPage {
               name:"",
               type:"",
               quantity:0,
-              price:0,
-              latitude:0,
-              longitude:0
+              price:"",
+              latitude:"",
+              longitude:"",
   };
 
   getProducts() {
