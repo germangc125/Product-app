@@ -15,32 +15,45 @@
 
 <ion-content padding>
 
+ <form [formGroup]="userForm" (ngSubmit)="showConfirm(user)">
 <ion-list>
 
   <ion-item>
     <ion-label fixed>Firsname</ion-label>
-    <ion-input type="text" [(ngModel)]="user.firstname"></ion-input>
+    <ion-input type="text" formControlName="firstname" [(ngModel)]="user.firstname"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label fixed>Lastname</ion-label>
-    <ion-input type="text" [(ngModel)]="user.lastname" ></ion-input>
+    <ion-input type="text" formControlName="lastname" [(ngModel)]="user.lastname" ></ion-input>
   </ion-item>
 
     <ion-item>
     <ion-label fixed>Email</ion-label>
-    <ion-input type="text" disabled="true" [(ngModel)]="user.email" >
+    <ion-input type="text" disabled="true" formControlName="email"  [(ngModel)]="user.email" >
     </ion-input>
   </ion-item>
 
       <ion-item>
     <ion-label fixed>Phone</ion-label>
-    <ion-input type="text" [(ngModel)]="user.phone" ></ion-input>
+    <ion-input type="text" formControlName="phone" [(ngModel)]="user.phone" ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label fixed>Password</ion-label>
+    <ion-input type="password" formControlName="password" [(ngModel)]="user.password" ></ion-input>
   </ion-item>
 
 
 </ion-list>
 
-  <button ion-button color="Green" (click)="updateUser(user)">Save</button>
+  <div text-center>
+   <button type="submit" ion-button small icon-left  [disabled]="!userForm.valid">
+              <ion-icon name="create"></ion-icon>
+              Save
+        </button>
+     </div>     
 
+
+</form>
 </ion-content>
