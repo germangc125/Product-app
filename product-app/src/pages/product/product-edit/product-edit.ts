@@ -4,8 +4,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { ProductService } from "../../../providers/product-service";
 import { Product } from '../../../model/product';
 import { ProductListPage } from "../product-list/product-list";
-import { AlertController } from 'ionic-angular';
-
+import { AlertController,ToastController  } from 'ionic-angular';
+import {CustomValidators} from '../../../validator/custom-validator';
 /*
   Generated class for the ProductEdit page.
 
@@ -27,31 +27,15 @@ export class ProductEditPage {
               name:"",
               type:"",
               quantity:0,
-              price:0,
+              price:"",
               latitude:"",
               longitude:"",
   };
 
 
-  constructor(public navCtrl: NavController, public params:NavParams,private productService: ProductService,public formBuilder: FormBuilder,public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public params:NavParams,private productService: ProductService,public formBuilder: FormBuilder,public alertCtrl: AlertController,public toastCtrl: ToastController) {
     this.idProductSelected = this.params.get("id");
     this.getProduct(this.idProductSelected);
-
-  setTimeout(() =>  this.productForm = this.createProductForm(), 550);
-
-   
-
-  }
-
-  private createProductForm() {
-    return this.formBuilder.group({
-      name: [this.product.name, [Validators.required, Validators.minLength(3)]],
-      type: [this.product.type, [Validators.required, Validators.minLength(6)]],
-      quantity: [this.product.quantity, [Validators.required, Validators.minLength(1)]],
-      price: [this.product.price, [Validators.required, Validators.minLength(5)]],
-      latitude: [this.product.latitude],
-      longitude: [this.product.longitude],
-    });
   }
   
  getProduct(id:number) {
@@ -80,7 +64,7 @@ export class ProductEditPage {
         {
           text: 'Agree',
           handler: () => {
-              alert("Actualizado");
+              this.updateProduct();
           }
         }
       ]
@@ -89,14 +73,31 @@ export class ProductEditPage {
   }
 
   updateProduct(){
-    this.productService.create(this.product)
-    .subscribe(product => {
-       this.navCtrl.push(ProductListPage);
-     });
+        this.productService.update(this.product)
+            .subscribe(product => {
+                       let toast = this.toastCtrl.create({
+                            message: 'Product was update successfully',
+                            duration: 3000,
+                            position: 'top'
+                       });
+                       toast.present();
+                             this.navCtrl.push(ProductListPage);
+                       }
+        );
   }
 
   ionViewDidLoad() {
     console.log('Hello ProductEditPage Page');
   }
 
+ ngOnInit() {
+    this.productForm = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      type: ['', [Validators.required, Validators.minLength(6)]],
+      quantity: ['', [Validators.required, Validators.minLength(1)]],
+      price: ['', [Validators.minLength(5)]],
+      latitude: [''],
+      longitude: [''],
+    });
+  }
 }

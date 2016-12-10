@@ -4,7 +4,7 @@ import { NavController } from 'ionic-angular';
 import { Product } from '../../../model/product';
 import { ProductService } from "../../../providers/product-service";
 import { ProductListPage } from "../product-list/product-list";
-import { AlertController } from 'ionic-angular';
+import { AlertController,ToastController } from 'ionic-angular';
 import { Geolocation } from 'ionic-native';
 
 /*
@@ -25,12 +25,12 @@ export class ProductCreatePage {
               name:"",
               type:"",
               quantity:0,
-              price:0,
+              price:"",
               latitude:"",
               longitude:""
   };
 
-  constructor(public navCtrl: NavController, private productService: ProductService,public formBuilder: FormBuilder,public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, private productService: ProductService,public formBuilder: FormBuilder,public alertCtrl: AlertController,public toastCtrl: ToastController) {
     this.productForm = this.createProductForm();
   }
   private createProductForm() {
@@ -46,8 +46,8 @@ export class ProductCreatePage {
 
   getCordenadas(){
     Geolocation.getCurrentPosition().then(res => {
-        this.product.latitude = res.coords.latitude;
-        this.product.longitude = res.coords.longitude;
+        this.product.latitude = res.coords.latitude.toString();
+        this.product.longitude = res.coords.longitude.toString();
     });
   }
 
@@ -76,6 +76,12 @@ export class ProductCreatePage {
   addProduct(){
     this.productService.create(this.product)
     .subscribe(product => {
+        let toast = this.toastCtrl.create({
+                            message: 'Product was add successfully',
+                            duration: 3000,
+                            position: 'top'
+                       });
+                       toast.present();
        this.navCtrl.push(ProductListPage);
      });
   }
