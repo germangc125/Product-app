@@ -95,6 +95,29 @@ export class ProfileEditPage {
   }
 
 
+       deleteConfirm(user:User) {
+    let confirm = this.alertCtrl.create({
+      title: 'Delete User?',
+      message: 'Are you sure to delete your user?',
+      buttons: [
+        {
+          text: 'Disagree',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Agree',
+          handler: () => {
+            this.deleteUser(user);
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+
 
 
      updateUser(user:User) {
@@ -103,6 +126,15 @@ export class ProfileEditPage {
             user => {
                 this.user = user;
             },
+            error => {
+                console.log(error);
+            }
+        );
+    }
+
+       deleteUser(user:User) {
+        this.userService.deleteUser(user.email)
+            .subscribe(
             error => {
                 console.log(error);
             }
