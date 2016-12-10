@@ -43,6 +43,18 @@ export class ProfilePage {
             }
         );
     }
+
+     updateUser(user:User) {
+        this.userService.updateUser(user)
+            .subscribe(
+            user => {
+                this.user = user;
+            },
+            error => {
+                console.log(error);
+            }
+        );
+    }
   
   
   
