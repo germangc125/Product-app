@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { ProductService } from "../../../providers/product-service";
 import { Product } from '../../../model/product';
 import { ProductCreatePage } from '../product-create/product-create';
+import { ProductEditPage } from '../product-edit/product-edit';
+
 /*
   Generated class for the ProductDetail page.
 
@@ -23,8 +25,8 @@ export class ProductDetailPage {
               type:"",
               quantity:0,
               price:0,
-              latitude:0,
-              longitude:0
+              latitude:"",
+              longitude:""
   };
 
 
@@ -52,4 +54,11 @@ export class ProductDetailPage {
   goCreateProduct(){
      this.navCtrl.push(ProductCreatePage);
   }
+
+  goEditProduct(){
+     this.navCtrl.push(ProductEditPage,{id: this.product.id});
+  }
+
+
+
 }
