@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { UserService } from "../../../providers/user-service";
+import { AlertController } from 'ionic-angular';
 import {User} from '../../../model/user';
 import { ProfileEditPage } from  '../profile-edit/profile-edit'
 
@@ -28,10 +29,36 @@ export class ProfilePage {
     status: ""
   };
 
-  constructor(public navCtrl: NavController, private userService: UserService) {
-	  this.getUser("admin198@admin.co");
+  constructor(
+    public navCtrl: NavController, 
+    private userService: UserService,
+    public alertCtrl: AlertController
+      ) {
+	  this.getUser("molinje@gmail.com");
   }
   
+
+         deleteConfirm(user:User) {
+    let confirm = this.alertCtrl.create({
+      title: 'Delete User?',
+      message: 'Are you sure to delete your user?',
+      buttons: [
+        {
+          text: 'Disagree',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Agree',
+          handler: () => {
+            this.deleteUser(user);
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
   
    getUser(email:string) {
         this.userService.getUser(email)
@@ -51,6 +78,15 @@ export class ProfilePage {
             user => {
                 this.user = user;
             },
+            error => {
+                console.log(error);
+            }
+        );
+    }
+
+    deleteUser(user:User) {
+        this.userService.deleteUser(user.email)
+            .subscribe(
             error => {
                 console.log(error);
             }
