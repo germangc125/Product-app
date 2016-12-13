@@ -59,10 +59,10 @@ export class UserService {
 
     }
 
-    create(name: string): Observable<User> {
+    create(user: User): Observable<User> {
 
         return this.http
-            .post(this.usersURI, JSON.stringify({name: name}), {headers: this.headers})
+            .post(this.usersURI2 + "sign-up", JSON.stringify(user), {headers: this.headers})
             .map(res => res.json())
             .catch(this.handleError);
     }
@@ -81,4 +81,6 @@ export class UserService {
         console.error('An error occurred', error); // for demo purposes only
         return Observable.throw(error.message || error);
     }
+
+     
 }

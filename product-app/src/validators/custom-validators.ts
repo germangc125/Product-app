@@ -17,4 +17,12 @@ export class CustomValidators {
       return { 'invalidEmailAddress': true };
     }
   }
+
+   public static phonedValidator(control: AbstractControl) {
+	    if (control.value.match(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,20}$/)) {
+	      return null;
+	    } else {
+	      return {'invalidNumberPhone': true };
+	    }
+  }
 } 
