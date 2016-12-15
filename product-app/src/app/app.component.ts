@@ -4,6 +4,7 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { ProductListPage } from '../pages/product/product-list/product-list';
 import { ProfilePage } from '../pages/profile/profile-detail/profile';
+
 import { LogoutPage } from '../pages/access/logout/logout';
 
 
