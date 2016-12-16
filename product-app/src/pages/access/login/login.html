@@ -19,21 +19,26 @@
   <ion-list>
 
   <ion-item>
+    
     <ion-label floating>e-mail</ion-label>
-    <ion-input [(ngModel)]="email" type="text" value=""></ion-input>
+    <ion-input  [(ngModel)]="email" type="text" value=""></ion-input>
   </ion-item>
 
   <ion-item>
+        
+    
     <ion-label floating>password</ion-label>
-    <ion-input [(ngModel)]="password"  type="password" value=""></ion-input>
+    <ion-input     [(ngModel)]="password"  type="password" value=""></ion-input>
   </ion-item>
 
 </ion-list>
 
-<div padding>
-  <button   (click)="login()">Sign In</button>
+<div padding text-center>
+  <button   ion-button  small  (click)="login()">Sign In</button>
+   <button   ion-button  small  (click)="Resgister()">Register</button>
+   
 </div>
-
+</form>
 </ion-content>
 
 
