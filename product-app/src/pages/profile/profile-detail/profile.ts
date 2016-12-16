@@ -162,6 +162,12 @@ if(res !=null){
     this.navCtrl.push(ProfileEditPage,{email: user.email});
   }
   
+     editPass(user:User){
+    this.navCtrl.push(ProfileFgotpassPage,{email: user.email});
+  }
+  
+  
+  
 
   ionViewDidLoad() {
     console.log('Hello ProfilePage Page');
