@@ -14,5 +14,29 @@
 
 
 <ion-content padding>
+ <form [formGroup]="userForm" (ngSubmit)="showConfirm(user)">
+<ion-list>
+
+
+
+  <ion-item>
+    <ion-label fixed>Password</ion-label>
+    <ion-input type="password" formControlName="password" [(ngModel)]="user.password" ></ion-input>
+  </ion-item>
+
+
+</ion-list>
+
+  <div text-center>
+   <button type="submit" ion-button small icon-left  [disabled]="!userForm.valid">
+              <ion-icon name="create"></ion-icon>
+              Save
+        </button>
+     </div>     
+
+
+</form>
+
+
 
 </ion-content>
