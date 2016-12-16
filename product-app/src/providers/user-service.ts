@@ -46,6 +46,9 @@ export class UserService {
             .map(() => user)
             .catch(this.handleError);
     }
+	
+	
+
 
     updateUser(user: User): Observable<User> {
        const url = this.usersURI2 + "update/" + user.email;
@@ -53,6 +56,17 @@ export class UserService {
             .put(url, JSON.stringify({"firstname":user.firstname, 
                                       "lastname":user.lastname, 
                                       "phone":user.phone}), 
+                {headers: this.headers})
+            .map(() => user)         
+            .catch(this.handleError);
+
+    }
+	
+	
+	    updatePass(user: User): Observable<User> {
+       const url = this.usersURI2 + "update/" + user.email;
+        return this.http
+            .put(url, JSON.stringify({"password":user.password}), 
                 {headers: this.headers})
             .map(() => user)         
             .catch(this.handleError);

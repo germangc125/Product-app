@@ -3,7 +3,10 @@ import { NavController } from 'ionic-angular';
 import { UserService } from "../../../providers/user-service";
 import { AlertController } from 'ionic-angular';
 import {User} from '../../../model/user';
-import { ProfileEditPage } from  '../profile-edit/profile-edit'
+import { ProfileEditPage } from  '../profile-edit/profile-edit';
+import { ProfileFgotpassPage } from  '../profile-fgotpass/profile-fgotpass';
+import {LoginPage}      from '../../access/login/login';
+import { Storage } from '@ionic/storage';
 
 /*
   Generated class for the Profile page.
@@ -28,17 +31,23 @@ export class ProfilePage {
     phone: "",
     status: ""
   };
+  
+  
+   lv_email: string;
 
   constructor(
     public navCtrl: NavController, 
     private userService: UserService,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+	public storage: Storage
       ) {
-	  this.getUser("molinje@gmail.com");
+		
+	   
+	  this.getUser2(this.lv_email);	  
   }
   
 
-         deleteConfirm(user:User) {
+   deleteConfirm(user:User) {
     let confirm = this.alertCtrl.create({
       title: 'Delete User?',
       message: 'Are you sure to delete your user?',
@@ -72,6 +81,62 @@ export class ProfilePage {
         );
     }
 
+	 getUser2(email:string) {
+		 
+		 
+	
+               this.storage.get("USER").then(res => {
+if(res !=null){
+
+
+     if(res.id !=undefined){
+	   this.lv_email = res.correo;	
+	   console.log(this.lv_email);
+	   
+	    this.userService.getUser(this.lv_email)
+            .subscribe(
+            user => {
+                this.user = user;
+            },
+            error => {
+                console.log(error);
+            }
+        );
+		
+       
+     }
+    
+
+}
+
+ else{
+           this.navCtrl.push(LoginPage);
+   
+        
+     }
+
+
+    
+
+
+
+    	
+    });
+
+
+
+	
+		 
+		 
+       
+		
+		
+		
+		
+    }
+	
+	
+	
      updateUser(user:User) {
         this.userService.updateUser(user)
             .subscribe(
@@ -101,5 +166,46 @@ export class ProfilePage {
   ionViewDidLoad() {
     console.log('Hello ProfilePage Page');
   }
+  
+  
+    ngOnInit(): void {
+    
+
+
+      this.storage.get("USER").then(res => {
+if(res !=null){
+
+
+     if(res.id !=undefined){
+	   this.lv_email = res.correo;	
+	   console.log(this.lv_email);
+       
+     }
+    
+
+}
+
+ else{
+           this.navCtrl.push(LoginPage);
+   
+        
+     }
+
+
+    
+
+
+
+    	
+    });
+     
+
+      
+
+ }
+
+  
+  
+  
 
 }
