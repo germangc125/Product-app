@@ -13,7 +13,8 @@ import {User} from '../../../model/user';
 */
 @Component({
   selector: 'page-profile-fgotpass',
-  templateUrl: 'profile-fgotpass.html'
+  templateUrl: 'profile-fgotpass.html',
+      providers: [UserService]
 })
 export class ProfileFgotpassPage {
 	
@@ -43,7 +44,7 @@ export class ProfileFgotpassPage {
 		  
 		this.idUserlogin = this.params.get("email");
 		this.getUser(this.idUserlogin);
-		
+		this.userForm = this.editUserForm();
 		  
 	  }
 	  

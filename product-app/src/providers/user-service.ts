@@ -64,9 +64,9 @@ export class UserService {
 	
 	
 	    updatePass(user: User): Observable<User> {
-       const url = this.usersURI2 + "update/" + user.email;
+       const url = this.usersURI2 + "forgot-password/" + user.email;
         return this.http
-            .put(url, JSON.stringify({"password":user.password}), 
+            .post(url, JSON.stringify({"password":user.password}), 
                 {headers: this.headers})
             .map(() => user)         
             .catch(this.handleError);
