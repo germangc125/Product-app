@@ -63,9 +63,10 @@ export class LoginPage {
                                                this.setDataUser.id=data.id;
                                                  this.setDataUser.correo=data.email;
                                                      this.storage.set('USER',this.setDataUser).then((val) => {
-                       
-                                                    this.navCtrl.push(ProductListPage);
-
+                                                       this.navCtrl.push(ProductListPage).then(() => {
+                                                       const index = this.navCtrl.getActive().index;
+                                                        this.navCtrl.remove(0, index);
+                                                      });
 
                                                            })
                                     } 
