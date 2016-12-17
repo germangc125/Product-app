@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { UserService } from "../../../providers/user-service";
 import { AlertController, ToastController } from 'ionic-angular';
 import {User} from '../../../model/user';
+import { ProfilePage } from '../profile-detail/profile';
 
 /*
   Generated class for the ProfileFgotpass page.
@@ -71,6 +72,7 @@ export class ProfileFgotpassPage {
           text: 'Agree',
           handler: () => {
             this.updatePass(user);
+            this.navCtrl.push(ProfilePage);
           }
         }
       ]

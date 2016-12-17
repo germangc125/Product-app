@@ -185,12 +185,22 @@ if(res !=null){
 
 
      if(res.id !=undefined){
-	   this.lv_email = res.correo;	
-	   console.log(this.lv_email);
-       
-     }
+     this.lv_email = res.correo;  
+     
+     
+      this.userService.getUser(this.lv_email)
+            .subscribe(
+            user => {
+                this.user = user;
+        
+            },
+            error => {
+                console.log(error);
+        
+            }
+        );
     
-
+}
 }
 
  else{
