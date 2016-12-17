@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { UserService } from "../../../providers/user-service";
 import { AlertController, ToastController } from 'ionic-angular';
 import {User} from '../../../model/user';
+import { ProfilePage } from '../profile-detail/profile';
 
 /*
   Generated class for the ProfileEdit page.
@@ -88,6 +89,7 @@ export class ProfileEditPage {
           text: 'Agree',
           handler: () => {
             this.updateUser(user);
+             this.navCtrl.push(ProfilePage);
           }
         }
       ]
