@@ -13,7 +13,8 @@ import {User} from '../../../model/user';
 */
 @Component({
   selector: 'page-profile-fgotpass',
-  templateUrl: 'profile-fgotpass.html'
+  templateUrl: 'profile-fgotpass.html',
+      providers: [UserService]
 })
 export class ProfileFgotpassPage {
 	
@@ -42,14 +43,58 @@ export class ProfileFgotpassPage {
 	  ) {
 		  
 		this.idUserlogin = this.params.get("email");
-		
+		this.getUser(this.idUserlogin);
+		this.userForm = this.editUserForm();
 		  
 	  }
+	  
+	  
+	      private editUserForm() {
+    return this.formBuilder.group({
+      password: ['', [Validators.required, Validators.minLength(6)]],
+
+    });
+  }
+  
+       showConfirm(user:User) {
+    let confirm = this.alertCtrl.create({
+      title: 'Edit Password?',
+      message: 'Are you sure to edit your password?',
+      buttons: [
+        {
+          text: 'Disagree',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Agree',
+          handler: () => {
+            this.updatePass(user);
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+  
   
   
   
        updatePass(user:User) {
         this.userService.updatePass(user)
+            .subscribe(
+            user => {
+                this.user = user;
+            },
+            error => {
+                console.log(error);
+            }
+        );
+    }
+	
+	     getUser(email:string) {
+        this.userService.getUser(email)
             .subscribe(
             user => {
                 this.user = user;

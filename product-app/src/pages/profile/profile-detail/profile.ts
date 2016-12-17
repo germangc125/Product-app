@@ -33,7 +33,7 @@ export class ProfilePage {
   };
   
   
-   lv_email: string;
+   lv_email: string = "";
 
   constructor(
     public navCtrl: NavController, 
@@ -43,7 +43,8 @@ export class ProfilePage {
       ) {
 		
 	   
-	  this.getUser2(this.lv_email);	  
+	  this.getUser2(this.lv_email);	 
+ 	  
   }
   
 
@@ -80,26 +81,27 @@ export class ProfilePage {
             }
         );
     }
-
-	 getUser2(email:string) {
+getUser2(email:string) {
 		 
 		 
 	
-               this.storage.get("USER").then(res => {
-if(res !=null){
+       this.storage.get("USER").then(res => {
+          if(res !=null){
 
 
      if(res.id !=undefined){
 	   this.lv_email = res.correo;	
-	   console.log(this.lv_email);
+	   
 	   
 	    this.userService.getUser(this.lv_email)
             .subscribe(
             user => {
                 this.user = user;
+				
             },
             error => {
                 console.log(error);
+				
             }
         );
 		
@@ -161,6 +163,12 @@ if(res !=null){
    userSelecionado(user:User){
     this.navCtrl.push(ProfileEditPage,{email: user.email});
   }
+  
+     editPass(user:User){
+    this.navCtrl.push(ProfileFgotpassPage,{email: user.email});
+  }
+  
+  
   
 
   ionViewDidLoad() {

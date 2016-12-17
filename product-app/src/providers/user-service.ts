@@ -64,19 +64,19 @@ export class UserService {
 	
 	
 	    updatePass(user: User): Observable<User> {
-       const url = this.usersURI2 + "update/" + user.email;
+       const url = this.usersURI2 + "forgot-password/" + user.email;
         return this.http
-            .put(url, JSON.stringify({"password":user.password}), 
+            .post(url, JSON.stringify({"password":user.password}), 
                 {headers: this.headers})
             .map(() => user)         
             .catch(this.handleError);
 
     }
 
-    create(name: string): Observable<User> {
+    create(user: User): Observable<User> {
 
         return this.http
-            .post(this.usersURI, JSON.stringify({name: name}), {headers: this.headers})
+            .post(this.usersURI2 + "sign-up", JSON.stringify(user), {headers: this.headers})
             .map(res => res.json())
             .catch(this.handleError);
     }
