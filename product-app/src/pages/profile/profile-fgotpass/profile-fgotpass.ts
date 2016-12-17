@@ -50,10 +50,6 @@ export class ProfileFgotpassPage {
 	  
 	      private editUserForm() {
     return this.formBuilder.group({
-      firstname: ['', [Validators.required, Validators.minLength(3)]],
-      lastname: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.minLength(6)]],
-      phone: ['', [Validators.required, Validators.minLength(7)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
 
     });
