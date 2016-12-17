@@ -5,7 +5,8 @@ import { AlertController } from 'ionic-angular';
 import {ProductListPage}   from '../../product/product-list/product-list';
 import { Storage } from '@ionic/storage';
 import {CreateUserPage}   from '../create-user/create-user';
-
+import {CustomValidators} from '../../../validators/custom-validators';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 /*
   Generated class for the Login page.
@@ -18,19 +19,29 @@ import {CreateUserPage}   from '../create-user/create-user';
   providers: [UserService]
 })
 export class LoginPage {
-   
-    email:string;
-    password:string;
+    loginForm: FormGroup;
+    email:string = "";
+    password:string = "";
    	private setDataUser: any = {id: 0, correo: ''};
 
-  constructor(public navCtrl: NavController,private userservice:UserService,public alertCtrl: AlertController,public storage: Storage) {}
+
+  constructor(public navCtrl: NavController,private userservice:UserService,public alertCtrl: AlertController,public storage: Storage,public formBuilder: FormBuilder) {
+    this.loginForm=this.loginFormulario();
+
+  }
+
+ private loginFormulario() {
+       return this.formBuilder.group({
+      email: ['', [Validators.required, Validators.minLength(6), CustomValidators.emailValidator]],
+      password: ['', [Validators.required, CustomValidators.passwordValidator,Validators.minLength(6)]],
+    });
+  }
 
 
   login() {
- 
             this.userservice.signinuser(this.email,this.password).subscribe
             (
-                 data => {      
+                 data => {     
                //Navigate to home page
                               var json= JSON.stringify(data);
                                      console.log('ver data :'+ json)
@@ -53,7 +64,7 @@ export class LoginPage {
                                                  this.setDataUser.correo=data.email;
                                                      this.storage.set('USER',this.setDataUser).then((val) => {
                        
-                                                    this.navCtrl.setRoot(ProductListPage);
+                                                    this.navCtrl.push(ProductListPage);
 
 
                                                            })
@@ -64,7 +75,7 @@ export class LoginPage {
 
 
 Resgister(){
-         this.navCtrl.setRoot(CreateUserPage);
+         this.navCtrl.push(CreateUserPage);
 
        }
 

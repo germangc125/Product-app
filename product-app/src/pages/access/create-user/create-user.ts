@@ -66,14 +66,12 @@ showConfirm() {
                             position: 'top'
                        });
                        toast.present();
-       this.navCtrl.push(LoginPage);
+     this.navCtrl.push(LoginPage);
      });
   }
 
 
-
   ionViewDidLoad() {
-    console.log('Hello CreateUserPage Page');
   }
 
   

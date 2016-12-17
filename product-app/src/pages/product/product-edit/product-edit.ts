@@ -5,7 +5,7 @@ import { ProductService } from "../../../providers/product-service";
 import { Product } from '../../../model/product';
 import { ProductListPage } from "../product-list/product-list";
 import { AlertController,ToastController  } from 'ionic-angular';
-import {CustomValidators} from '../../../validator/custom-validator';
+
 /*
   Generated class for the ProductEdit page.
 
